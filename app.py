@@ -9,8 +9,7 @@ st.set_page_config(
 # Load dataset
 @st.cache_data
 def load_data():
-    data_path = '/content/drive/MyDrive/Kaggle/train.csv'
-    df = pd.read_csv(data_path)
+    df = pd.read_csv('train.csv)
 
     df['Order Date'] = pd.to_datetime(
         df['Order Date'], format='%d/%m/%Y'
