@@ -69,7 +69,6 @@ col3.metric("Average Sales per Row", f"${average_sales:,.2f}")
 
 st.divider()
 
-
 # Sales by category
 st.subheader("Sales by Category")
 
@@ -79,20 +78,7 @@ sales_category = (
     .sort_values(ascending=False)
 )
 
-fig, ax = plt.subplots()
-category_colors = {
-    'Technology': '#F4C542',       # Kuning
-    'Office Supplies': '#4CAF50',  # Hijau
-    'Furniture': '#4285F4'         # Biru
-}
-colors = [category_colors.get(x, '#4285F4') for x in sales_category.index]
-sales_category.plot(kind='bar', ax=ax, color=colors)
-ax.set_xlabel("Category")
-ax.set_ylabel("Sales ($)")
-plt.xticks(rotation=0)
-st.pyplot(fig)
-plt.close(fig)
-
+st.bar_chart(sales_category, color="#F4C542")
 
 # Sales by subcategory
 st.subheader("Sales by Subcategory")
@@ -103,20 +89,7 @@ sales_subcategory = (
     .sort_values(ascending=False)
 )
 
-fig, ax = plt.subplots()
-subcategory_colors = plt.cm.Set3(
-    [i / max(len(sales_subcategory), 1)
-     for i in range(len(sales_subcategory))]
-)
-sales_subcategory.plot(
-    kind='bar', ax=ax, color=subcategory_colors
-)
-ax.set_xlabel("Subcategory")
-ax.set_ylabel("Sales ($)")
-plt.xticks(rotation=45, ha='right')
-st.pyplot(fig)
-plt.close(fig)
-
+st.bar_chart(sales_subcategory, color="#4CAF50")
 
 # Sales by region
 st.subheader("Sales by Region")
@@ -127,21 +100,7 @@ sales_region = (
     .sort_values(ascending=False)
 )
 
-fig, ax = plt.subplots()
-region_colors = {
-    'West': '#4285F4',    # Biru
-    'East': '#F4C542',    # Kuning
-    'Central': '#4CAF50', # Hijau
-    'South': '#E57373'    # Merah
-}
-colors = [region_colors.get(x, '#4285F4') for x in sales_region.index]
-sales_region.plot(kind='bar', ax=ax, color=colors)
-ax.set_xlabel("Region")
-ax.set_ylabel("Sales ($)")
-plt.xticks(rotation=0)
-st.pyplot(fig)
-plt.close(fig)
-
+st.bar_chart(sales_region, color="#4285F4")
 
 # Monthly sales trend
 st.subheader("Monthly Sales Trend")
@@ -154,7 +113,6 @@ monthly_sales = (
 
 st.line_chart(monthly_sales)
 
-
 # Sales by customer segment
 st.subheader("Sales by Customer Segment")
 
@@ -164,20 +122,7 @@ sales_segment = (
     .sort_values(ascending=False)
 )
 
-fig, ax = plt.subplots()
-segment_colors = {
-    'Consumer': '#4285F4',   # Biru
-    'Corporate': '#F4C542',  # Kuning
-    'Home Office': '#4CAF50' # Hijau
-}
-colors = [segment_colors.get(x, '#4285F4') for x in sales_segment.index]
-sales_segment.plot(kind='bar', ax=ax, color=colors)
-ax.set_xlabel("Customer Segment")
-ax.set_ylabel("Sales ($)")
-plt.xticks(rotation=0)
-st.pyplot(fig)
-plt.close(fig)
-
+st.bar_chart(sales_segment, color="#E57373")
 
 # Data preview
 with st.expander("View Filtered Dataset"):
